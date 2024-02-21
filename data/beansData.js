@@ -82,4 +82,5 @@ const BeansData = [
         index: 3
     }
 ];
+
 export default BeansData;

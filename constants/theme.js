@@ -1,36 +1,54 @@
-const COLORS = {
-    red: '#DC3535',
-    orange: '#D17842',
-    slate: '#0C0F14',
-
-    gray: '#252A32',
-    gray1: '#52555A',
-    gray2: '#AEAEAE',
-
-    white: '#FFFFFF',
-    black: '#000000'
+const SIZES = {
+    size_2: 2,
+    size_4: 4,
+    size_8: 8,
+    size_10: 10,
+    size_12: 12,
+    size_15: 15,
+    size_16: 16,
+    size_18: 18,
+    size_20: 20,
+    size_24: 24,
+    size_28: 28,
+    size_30: 30,
+    size_32: 32,
+    size_36: 36
 };
 
-const SIZES = {
-    text_1: 28,
-    text_2: 20,
-    text_3: 16,
-    text_4: 14,
-    text_5: 12,
-    text_6: 10
+const COLORS = {
+    primaryRedHex: '#DC3535',
+    primaryOrangeHex: '#D17842',
+    primaryBlackHex: '#0C0F14',
+    primaryDarkGreyHex: '#141921',
+    secondaryDarkGreyHex: '#21262E',
+    primaryGreyHex: '#252A32',
+    secondaryGreyHex: '#252A32',
+    primaryLightGreyHex: '#52555A',
+    secondaryLightGreyHex: '#AEAEAE',
+    primaryWhiteHex: '#FFFFFF',
+    primaryBlackRGBA: 'rgba(12,15,20,0.5)',
+    secondaryBlackRGBA: 'rgba(0,0,0,0.7)'
 };
 
 const FONT = {
-    appIcon: 'app-icons',
-    poppinsBlack: 'poppins-black',
-    poppinsBold: 'poppins-bold',
-    poppinsExBold: 'poppins-extra-bold',
-    poppinsExLight: 'poppins-extra-light',
-    poppinsLight: 'poppins-light',
-    poppinsMedium: 'poppins-medium',
-    poppinsRegular: 'poppins-regular',
-    poppinsSemiBold: 'poppins-semi-bold',
-    poppinsThin: 'poppins-thin'
+    poppins_black: 'Poppins-Black',
+    poppins_bold: 'Poppins-Bold',
+    poppins_extrabold: 'Poppins-ExtraBold',
+    poppins_extralight: 'Poppins-ExtraLight',
+    poppins_light: 'Poppins-Light',
+    poppins_medium: 'Poppins-Medium',
+    poppins_regular: 'Poppins-Regular',
+    poppins_semibold: 'Poppins-SemiBold',
+    poppins_thin: 'Poppins-Thin'
 };
 
-export { SIZES, COLORS, FONT };
+const BORDERRADIUS = {
+    radius_4: 4,
+    radius_8: 8,
+    radius_10: 10,
+    radius_15: 15,
+    radius_20: 20,
+    radius_25: 25
+};
+
+export { BORDERRADIUS, COLORS, FONT, SIZES };
