@@ -5,7 +5,6 @@ import React from 'react';
 import styles from './primaryButton.style';
 
 export default function PrimaryButton({
-    children,
     iconUrl,
     handlePress,
     title,

@@ -27,7 +27,8 @@ const COLORS = {
     secondaryLightGreyHex: '#AEAEAE',
     primaryWhiteHex: '#FFFFFF',
     primaryBlackRGBA: 'rgba(12,15,20,0.5)',
-    secondaryBlackRGBA: 'rgba(0,0,0,0.7)'
+    secondaryBlackRGBA: 'rgba(0,0,0,0.7)',
+    gray: '#4E5053'
 };
 
 const FONT = {

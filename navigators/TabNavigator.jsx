@@ -9,6 +9,7 @@ import CartScreen from '../screens/CartScreen';
 import { COLORS, SIZES, icons, images } from '../constants';
 import { BlurView } from 'expo-blur';
 import PrimaryButton from '../components/common/primaryButton/PrimaryButton';
+import CustomHeader from '../components/common/customHeader/CustomHeader';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -23,7 +24,6 @@ const TabNavigator = ({ navigation }) => {
                 activeTitleStyle={activeTitleStyle(focused)}
                 containerStyle={styles.titleContainerStyle}
                 handlePress={() => navigation.navigate(navigate)}
-                titleStyle={styles.titleStyle}
             />
         );
     };
@@ -35,16 +35,16 @@ const TabNavigator = ({ navigation }) => {
                 tabBarHideOnKeyboard: true,
                 tabBarStyle: styles.tabBarStyle,
                 tabBarLabelStyle: { display: 'none' },
-                // tabBarBackground: () => (
-                //     <BlurView
-                //         intensity={10}
-                //         style={{
-                //             ...StyleSheet.absoluteFillObject,
-                //             overflow: 'hidden',
-                //             backgroundColor: 'transparent',
-                //         }}
-                //     />
-                // ) 
+                tabBarBackground: () => (
+                    <BlurView
+                        intensity={10}
+                        style={{
+                            ...StyleSheet.absoluteFillObject,
+                            overflow: 'hidden',
+                            backgroundColor: 'transparent'
+                        }}
+                    />
+                )
             }}
         >
             <BottomTab.Screen
