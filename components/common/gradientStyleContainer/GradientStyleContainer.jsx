@@ -1,11 +1,14 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 
 import styles from './gradientStyleContainer.style';
 import { COLORS } from '../../../constants';
 
-export default function GradientStyleContainer({ Children, containerStyle, contentContainer }) {
+export default function GradientStyleContainer({
+    containerStyle,
+    contentContainer
+}) {
     return (
         <View style={styles.container}>
             <LinearGradient

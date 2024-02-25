@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
 import { COLORS } from '../constants';
+import React from 'react';
 
 const FavoriteScreen = () => {
     return (

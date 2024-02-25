@@ -1,3 +1,3 @@
-String.prototype.toCapitalize = function () {
-    return this.charAt(0).toUpperCase() + this.slice(1);
+export const filterData = (key, value, data) => {
+    return data.filter(item => item[key] === value);
 };

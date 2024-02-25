@@ -1,15 +1,14 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet } from 'react-native';
 import React from 'react';
 
+import PrimaryButton from '../components/common/primaryButton/PrimaryButton';
 import OrderHistoryScreen from '../screens/OrderHistoryScreen';
 import FavoriteScreen from '../screens/FavoriteScreen';
 import HomeScreen from '../screens/HomeScreen';
 import CartScreen from '../screens/CartScreen';
-import { COLORS, SIZES, icons, images } from '../constants';
+import { COLORS, icons } from '../constants';
 import { BlurView } from 'expo-blur';
-import PrimaryButton from '../components/common/primaryButton/PrimaryButton';
-import CustomHeader from '../components/common/customHeader/CustomHeader';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -37,7 +36,7 @@ const TabNavigator = ({ navigation }) => {
                 tabBarLabelStyle: { display: 'none' },
                 tabBarBackground: () => (
                     <BlurView
-                        intensity={10}
+                        intensity={5}
                         style={{
                             ...StyleSheet.absoluteFillObject,
                             overflow: 'hidden',
@@ -90,7 +89,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         borderTopWidth: 0,
         elevation: 0,
-        borderTopColor: 'transparent'
     },
     blurViewStyle: {
         position: 'absolute',

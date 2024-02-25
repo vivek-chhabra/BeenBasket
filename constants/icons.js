@@ -14,6 +14,7 @@ import star from '../assets/icons/star.png';
 import visa from '../assets/icons/visa.png';
 import wallet from '../assets/icons/wallet.png';
 import add from '../assets/icons/add.png';
+import search from '../assets/icons/search.png';
 
 export default {
     arrowLeft,
@@ -31,5 +32,6 @@ export default {
     star,
     visa,
     wallet,
-    add
+    add,
+    search
 };

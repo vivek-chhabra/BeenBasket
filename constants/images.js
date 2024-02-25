@@ -40,8 +40,8 @@ const macchiatoPort1 = require(`${baseCoffee}/macchiato/portrait/macchiato_pic_1
 const macchiatoPort2 = require(`${baseCoffee}/macchiato/portrait/macchiato_pic_2_portrait.png`);
 const macchiatoPort3 = require(`${baseCoffee}/macchiato/portrait/macchiato_pic_3_portrait.png`);
 
-const macchiatoSquare1 = require(`${baseCoffee}/macchiato/square/macchiato_pic_3_square.png`);
-const macchiatoSquare2 = require(`${baseCoffee}/macchiato/square/macchiato_pic_3_square.png`);
+const macchiatoSquare1 = require(`${baseCoffee}/macchiato/square/macchiato_pic_1_square.png`);
+const macchiatoSquare2 = require(`${baseCoffee}/macchiato/square/macchiato_pic_2_square.png`);
 const macchiatoSquare3 = require(`${baseCoffee}/macchiato/square/macchiato_pic_3_square.png`);
 
 const cappPort1 = require(`${baseCoffee}/cappuccino/portrait/cappuccino_pic_1_portrait.png`);

@@ -17,7 +17,7 @@ const SIZES = {
 
 const COLORS = {
     primaryRedHex: '#DC3535',
-    primaryOrangeHex: '#D17842',
+    primaryOrangeHex: '#d17942',
     primaryBlackHex: '#0C0F14',
     primaryDarkGreyHex: '#141921',
     secondaryDarkGreyHex: '#21262E',
@@ -26,7 +26,7 @@ const COLORS = {
     primaryLightGreyHex: '#52555A',
     secondaryLightGreyHex: '#AEAEAE',
     primaryWhiteHex: '#FFFFFF',
-    primaryBlackRGBA: 'rgba(12,15,20,0.5)',
+    primaryBlackRGBA: 'rgba(12, 15, 20, 0.919)',
     secondaryBlackRGBA: 'rgba(0,0,0,0.7)',
     gray: '#4E5053'
 };

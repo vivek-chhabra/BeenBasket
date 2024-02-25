@@ -1,10 +1,10 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 
-import styles from './customHeader.style';
-import PrimaryButton from '../primaryButton/PrimaryButton';
-import { COLORS, SIZES } from '../../../constants';
 import GradientStyleContainer from '../gradientStyleContainer/GradientStyleContainer';
+import PrimaryButton from '../primaryButton/PrimaryButton';
+import { SIZES } from '../../../constants';
+import styles from './customHeader.style';
 
 export default function CustomHeader({
     iconLeft,
