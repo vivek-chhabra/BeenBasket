@@ -1,74 +1,111 @@
+import { useNavigation } from '@react-navigation/native';
 import { View, Text, Image } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 
 import GradientStyleContainer from '../gradientStyleContainer/GradientStyleContainer';
 import PrimaryButton from '../primaryButton/PrimaryButton';
-import { COLORS, SIZES, icons } from '../../../constants';
+import { COLORS, icons } from '../../../constants';
 import styles from './customCoffeeComponent.style';
 import Ripple from 'react-native-material-ripple';
+import { useAsyncStorage } from '../../../context/AsyncStorageContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function CustomCoffeeComponent({
-    handlePress,
-    containerStyle,
-    data
-}) {
+export default function CustomCoffeeComponent({ containerStyle, data }) {
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    const navigation = useNavigation();
+
+    const { setData, getData } = useAsyncStorage();
+
     const {
         imagelink_square,
-        imagelink_portrait,
         name,
         special_ingredient,
-        average_rating
+        average_rating,
+        prices,
+        roasted,
+        id
     } = data;
+
+    const addToCart = async () => {
+        await setData(
+            'cart',
+            {
+                id,
+                name,
+                special_ingredient,
+                roasted,
+                imagelink_square,
+                sizes: [{ ...prices[2], quantity: 1 }]
+            },
+            () => {
+                setIsSuccess(true);
+                setTimeout(() => {
+                    setIsSuccess(false);
+                }, 1280);
+            }
+        );
+    };
+
+    const handlePress = () => {
+        navigation.navigate('coffeeBeanDetails', { data });
+    };
 
     return (
         <GradientStyleContainer
-            containerStyle={containerStyle}
+            containerStyle={[styles.container, containerStyle]}
             contentContainer={
-                <Ripple onPress={handlePress} style={[styles.container]}>
-                    <Image
-                        source={imagelink_square}
-                        resizeMode="cover"
-                        style={styles.image}
-                    />
-                    <Text
-                        style={{
-                            color: COLORS.secondaryLightGreyHex,
-                            fontSize: SIZES.size_18,
-                            fontWeight: '600'
-                        }}
+                <>
+                    <Ripple
+                        onPress={handlePress}
+                        rippleColor={COLORS.primaryLightGreyHex}
                     >
-                        {name}
-                    </Text>
-                    <Text
-                        style={{
-                            color: COLORS.primaryLightGreyHex,
-                            fontSize: SIZES.size_13,
-                            flexWrap: 'wrap',
-                            bottom: SIZES.size_4
-                        }}
-                    >
-                        {special_ingredient}
-                    </Text>
+                        <View>
+                            <Image
+                                source={imagelink_square}
+                                resizeMode="cover"
+                                style={styles.image}
+                            />
+                            <View style={styles.ratings}>
+                                <Image
+                                    source={icons.star}
+                                    style={styles.starStyle}
+                                />
+                                <Text style={styles.averageRatings}>
+                                    {average_rating}
+                                </Text>
+                            </View>
+                        </View>
+                        <Text style={styles.contentStyle}>{name}</Text>
+                        <Text style={styles.specialIng}>
+                            {special_ingredient}
+                        </Text>
+                    </Ripple>
                     <View style={styles.bottomPrice}>
                         <Text style={styles.priceStyle}>
                             $
                             <Text
                                 style={[
                                     styles.priceStyle,
-                                    { color: COLORS.primaryWhiteHex }
+                                    { color: COLORS.secondaryLightGreyHex }
                                 ]}
                             >
                                 {' '}
-                                4.20
+                                {prices[2].price}
                             </Text>
                         </Text>
                         <PrimaryButton
-                            iconUrl={icons.add}
+                            iconUrl={isSuccess ? icons.success : icons.add}
                             containerStyle={styles.iconContainer}
-                            titleStyle={styles.iconStyle}
+                            titleStyle={
+                                isSuccess
+                                    ? styles.successIconStyle
+                                    : styles.iconStyle
+                            }
+                            handlePress={addToCart}
                         />
                     </View>
-                </Ripple>
+                </>
             }
         />
     );

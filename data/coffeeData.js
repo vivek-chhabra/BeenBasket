@@ -15,7 +15,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 3.6,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',
@@ -35,7 +35,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 3.6,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',
@@ -75,7 +75,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 8.6,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',
@@ -95,7 +95,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 4,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',
@@ -116,7 +116,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 7.5,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',
@@ -136,7 +136,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 1.9,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',
@@ -157,7 +157,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 9.5,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',
@@ -177,7 +177,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 5.5,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',
@@ -198,7 +198,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 8.7,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',
@@ -218,7 +218,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 7.7,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',
@@ -239,7 +239,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 2.1,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',
@@ -259,7 +259,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 3.9,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',
@@ -279,7 +279,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 4.9,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',
@@ -299,7 +299,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 5.7,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',
@@ -319,7 +319,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 3.7,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',
@@ -339,7 +339,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 4.1,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',
@@ -359,7 +359,7 @@ const CoffeeData = [
             { size: 'M', price: '3.15', currency: '$' },
             { size: 'L', price: '4.29', currency: '$' }
         ],
-        average_rating: 4.7,
+        average_rating: 4.4,
         ratings_count: '6,879',
         favourite: false,
         type: 'Coffee',

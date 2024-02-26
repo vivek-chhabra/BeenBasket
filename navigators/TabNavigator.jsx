@@ -36,7 +36,8 @@ const TabNavigator = ({ navigation }) => {
                 tabBarLabelStyle: { display: 'none' },
                 tabBarBackground: () => (
                     <BlurView
-                        intensity={5}
+                        intensity={30}
+                        tint='dark'
                         style={{
                             ...StyleSheet.absoluteFillObject,
                             overflow: 'hidden',

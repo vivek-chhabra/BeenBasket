@@ -24,18 +24,15 @@ export default function CustomHeader({
                 }
                 containerStyle={{ padding: 0, borderRadius: SIZES.size_10 }}
             />
-            <PrimaryButton
-                containerStyle={[styles.containerStyle]}
-                titleStyle={[
-                    styles.iconStyle,
-                    {
-                        width: '100%',
-                        height: '100%',
-                        borderRadius: SIZES.size_10
-                    },
-                    style
-                ]}
-                iconUrl={iconRight}
+            <GradientStyleContainer
+                contentContainer={
+                    <PrimaryButton
+                        containerStyle={[styles.containerStyle]}
+                        titleStyle={[styles.iconStyle, style]}
+                        iconUrl={iconRight}
+                    />
+                }
+                containerStyle={{ padding: 0, borderRadius: SIZES.size_10 }}
             />
         </View>
     );

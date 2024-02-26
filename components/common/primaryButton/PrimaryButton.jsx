@@ -3,6 +3,7 @@ import Ripple from 'react-native-material-ripple';
 import React from 'react';
 
 import styles from './primaryButton.style';
+import { COLORS } from '../../../constants';
 
 export default function PrimaryButton({
     iconUrl,
@@ -24,6 +25,7 @@ export default function PrimaryButton({
         <Ripple
             style={[defaultContainerStyle, containerStyle]}
             onPress={handlePress}
+            rippleColor={COLORS.primaryWhiteHex}
         >
             {iconUrl ? (
                 <Image

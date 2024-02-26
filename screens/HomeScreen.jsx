@@ -9,11 +9,11 @@ import {
     FlatList
 } from 'react-native';
 
+import CustomCoffeeComponent from '../components/common/customCoffeeComponent/CustomCoffeeComponent';
 import PrimaryButton from '../components/common/primaryButton/PrimaryButton';
 import { COLORS, SIZES, icons } from '../constants';
 import { filterData } from '../utils/utils';
 import CoffeeData from '../data/coffeeData';
-import CustomCoffeeComponent from '../components/common/customCoffeeComponent/CustomCoffeeComponent';
 import BeansData from '../data/beansData';
 
 const HomeScreen = () => {
@@ -22,8 +22,19 @@ const HomeScreen = () => {
     const [coffeeList, setCoffeeList] = useState(CoffeeData);
     const [activeCategory, setActiveCategory] = useState('All');
 
+    const getCategoryData = cate => {
+        setActiveCategory(cate);
+        filterCoffeeData(cate);
+    };
+
     const handleSearch = () => {
-        alert(query);
+        const coffeeResult = filterData('name', query, coffeeList);
+        setCoffeeList(coffeeResult);
+    };
+
+    const handleCrossIcon = () => {
+        setQuery('');
+        getCategoryData('All');
     };
 
     const filterCoffeeData = category => {
@@ -55,6 +66,7 @@ const HomeScreen = () => {
                         query && { tintColor: COLORS.primaryOrangeHex },
                         { width: 20, height: 20 }
                     ]}
+                    handlePress={handleSearch}
                 />
                 <TextInput
                     placeholder="Find Your Coffee..."
@@ -66,7 +78,23 @@ const HomeScreen = () => {
                     cursorColor={COLORS.secondaryLightGreyHex}
                     onChangeText={text => setQuery(text)}
                     value={query}
-                    // onEndEditing={handleSearch}
+                />
+                <PrimaryButton
+                    iconUrl={icons.cross}
+                    containerStyle={[
+                        styles.iconStyle,
+                        {
+                            borderTopLeftRadius: 0,
+                            borderBottomLeftRadius: 0,
+                            borderTopRightRadius: SIZES.size_15,
+                            borderBottomRightRadius: SIZES.size_15
+                        }
+                    ]}
+                    titleStyle={[
+                        !query && { tintColor: COLORS.secondaryDarkGreyHex },
+                        { width: 15, height: 15 }
+                    ]}
+                    handlePress={!query || handleCrossIcon}
                 />
             </View>
             <ScrollView
@@ -77,10 +105,7 @@ const HomeScreen = () => {
                 {categories.map((cate, idx) => (
                     <Pressable
                         key={`${cate} ${idx}`}
-                        onPress={() => {
-                            setActiveCategory(cate);
-                            filterCoffeeData(cate);
-                        }}
+                        onPress={() => getCategoryData(cate)}
                         style={{ height: 30 }}
                     >
                         <Text
@@ -105,17 +130,21 @@ const HomeScreen = () => {
                 ))}
             </ScrollView>
 
-            {/* coffee flatlist */}
-            <FlatList
-                data={coffeeList}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                keyExtractor={item => item.id}
-                renderItem={({ item }) => <CustomCoffeeComponent data={item} />}
-                contentContainerStyle={styles.coffeeContainerStyle}
-            />
+            {coffeeList.length ? (
+                <FlatList
+                    data={coffeeList}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    keyExtractor={item => item.id}
+                    renderItem={({ item }) => (
+                        <CustomCoffeeComponent data={item} />
+                    )}
+                    contentContainerStyle={styles.coffeeContainerStyle}
+                />
+            ) : (
+                <Text style={styles.noCoffee}>No Coffee Found...</Text>
+            )}
 
-            {/* beans flatlist */}
             <Text style={styles.beanHeaderStyle}>Coffee Beans</Text>
             <FlatList
                 data={BeansData}
@@ -145,22 +174,19 @@ const styles = StyleSheet.create({
         paddingHorizontal: SIZES.size_20
     },
     searchField: {
-        width: '88%',
+        width: '100%',
         height: 45,
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
         marginTop: SIZES.size_18,
         marginLeft: 20,
-        paddingHorizontal: SIZES.size_20
+        paddingHorizontal: SIZES.size_20,
+        alignSelf: 'flex-end'
     },
     input: {
         backgroundColor: COLORS.secondaryDarkGreyHex,
         color: COLORS.secondaryLightGreyHex,
         height: '100%',
-        width: '100%',
-        borderTopRightRadius: SIZES.size_15,
-        borderBottomRightRadius: SIZES.size_15,
+        flex: 1,
         paddingLeft: SIZES.size_4
     },
     iconStyle: {
@@ -205,5 +231,15 @@ const styles = StyleSheet.create({
         fontSize: SIZES.size_20,
         paddingHorizontal: SIZES.size_20,
         marginTop: SIZES.size_10
+    },
+    noCoffee: {
+        paddingVertical: 10,
+        textAlign: 'center',
+        color: COLORS.secondaryLightGreyHex + '80',
+        fontWeight: '600',
+        borderRadius: SIZES.size_15,
+        fontSize: SIZES.size_16,
+        marginHorizontal: 20,
+        marginVertical: SIZES.size_36 + 40
     }
 });

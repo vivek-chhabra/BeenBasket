@@ -15,6 +15,8 @@ import visa from '../assets/icons/visa.png';
 import wallet from '../assets/icons/wallet.png';
 import add from '../assets/icons/add.png';
 import search from '../assets/icons/search.png';
+import cross from '../assets/icons/cross.png';
+import success from '../assets/icons/success.gif';
 
 export default {
     arrowLeft,
@@ -33,5 +35,7 @@ export default {
     visa,
     wallet,
     add,
-    search
+    search,
+    cross,
+    success
 };

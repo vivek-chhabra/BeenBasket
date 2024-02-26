@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.primaryOrangeHex,
         height: SIZES.size_36 + 4,
         width: 100,
+        overflow: 'hidden'
     },
     title: {
         color: COLORS.primaryWhiteHex,
@@ -20,7 +21,8 @@ const styles = StyleSheet.create({
         width: SIZES.size_28,
         height: SIZES.size_28,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        overflow: 'hidden'
     },
     iconStyle: {
         width: SIZES.size_24,

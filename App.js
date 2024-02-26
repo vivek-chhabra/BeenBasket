@@ -5,9 +5,11 @@ import React, { useEffect, useState } from 'react';
 import * as Font from 'expo-font';
 
 import CustomHeader from './components/common/customHeader/CustomHeader';
+import AsyncStorageContext from './context/AsyncStorageContext';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { COLORS, SIZES, icons, images } from './constants';
 import TabNavigator from './navigators/TabNavigator';
-import { COLORS, icons, images } from './constants';
+import DetailsScreen from './screens/DetailsScreen';
 import { StatusBar } from 'expo-status-bar';
 
 const Stack = createNativeStackNavigator();
@@ -41,29 +43,57 @@ export default function App() {
             style={{ flex: 1, backgroundColor: COLORS.primaryBlackHex }}
         >
             <StatusBar style="light" />
-            <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen
-                        name="Tabs"
-                        component={TabNavigator}
-                        options={{
-                            header: () => (
-                                <CustomHeader
-                                    iconLeft={icons.menu}
-                                    iconRight={images.profile}
-                                    containerStyle={{
-                                        paddingHorizontal: 10,
-                                        paddingVertical: 6,
-                                        borderWidth: 0,
-                                        right: 5
-                                    }}
-                                    style={{ tintColor: null, borderRadius: 9 }}
-                                />
-                            )
-                        }}
-                    />
-                </Stack.Navigator>
-            </NavigationContainer>
+            <AsyncStorageContext>
+                <NavigationContainer>
+                    <Stack.Navigator>
+                        <Stack.Screen
+                            name="Tabs"
+                            component={TabNavigator}
+                            options={{
+                                header: () => (
+                                    <CustomHeader
+                                        iconLeft={icons.menu}
+                                        iconRight={images.profile}
+                                        containerStyle={{
+                                            paddingHorizontal: 10,
+                                            paddingVertical: 6,
+                                            borderWidth: 0,
+                                            right: 5
+                                        }}
+                                        style={{
+                                            tintColor: null,
+                                            width: '100%',
+                                            height: '100%',
+                                            borderRadius: SIZES.size_10
+                                        }}
+                                    />
+                                )
+                            }}
+                        />
+                        <Stack.Screen
+                            name="coffeeBeanDetails"
+                            component={DetailsScreen}
+                            options={{
+                                header: () => (
+                                    <CustomHeader
+                                        iconLeft={icons.arrowLeft}
+                                        iconRight={icons.heart}
+                                        containerStyle={{
+                                            paddingHorizontal: 10,
+                                            paddingVertical: 6,
+                                            borderWidth: 0,
+                                            right: 5
+                                        }}
+                                        style={{
+                                            tintColor: COLORS.primaryRedHex
+                                        }}
+                                    />
+                                )
+                            }}
+                        />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </AsyncStorageContext>
         </SafeAreaView>
     );
 }
