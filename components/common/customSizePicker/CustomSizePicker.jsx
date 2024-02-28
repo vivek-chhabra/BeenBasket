@@ -10,7 +10,8 @@ export default function CustomSizePicker({
     containerStyle,
     style,
     activeSize,
-    setActiveSize
+    setActiveSize,
+    setActivePrice
 }) {
     return (
         <View style={[styles.container, containerStyle]}>
@@ -22,7 +23,10 @@ export default function CustomSizePicker({
                         style
                     ]}
                     title={size.size}
-                    handlePress={() => setActiveSize(size.size)}
+                    handlePress={() => {
+                        setActiveSize(size.size);
+                        setActivePrice(size.price);
+                    }}
                     titleStyle={styles.textStyle(activeSize === size.size)}
                 />
             ))}
