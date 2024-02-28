@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "newNativeApp",
-    "slug": "newNativeApp",
+    "name": "BeanBasket",
+    "slug": "BeanBasket",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

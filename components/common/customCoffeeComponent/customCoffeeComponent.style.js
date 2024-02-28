@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
     container: {
         width: 165,
         height: 245,
-        gap: SIZES.size_4
+        gap: SIZES.size_4,
+        padding: SIZES.size_12
     },
     image: {
         width: '100%',

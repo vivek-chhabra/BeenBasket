@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
     StyleSheet,
     Text,
@@ -15,6 +15,7 @@ import { COLORS, SIZES, icons } from '../constants';
 import { filterData } from '../utils/utils';
 import CoffeeData from '../data/coffeeData';
 import BeansData from '../data/beansData';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 
 const HomeScreen = () => {
     const [query, setQuery] = useState('');
@@ -44,6 +45,20 @@ const HomeScreen = () => {
                 : filterData('name', category, CoffeeData);
         setCoffeeList(filteredCoffeeList);
     };
+
+    const isFocused = useIsFocused();
+
+    useEffect(() => {
+        if (isFocused) {
+            const categoriesSet = new Set();
+            CoffeeData.forEach(category => {
+                if (categoriesSet.has(category.name)) {
+                    return false;
+                } else categoriesSet.add(category.name);
+            });
+            setCategories(['All', ...categoriesSet]);
+        }
+    }, []);
 
     useEffect(() => {
         const categoriesSet = new Set();
@@ -170,7 +185,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: SIZES.size_30,
         width: 300,
-        fontFamily: 'Poppins-Bold',
         paddingHorizontal: SIZES.size_20
     },
     searchField: {
@@ -219,18 +233,20 @@ const styles = StyleSheet.create({
     coffeeContainerStyle: {
         flexDirection: 'row',
         marginTop: SIZES.size_12,
-        paddingHorizontal: 5
+        paddingHorizontal: SIZES.size_20,
+        gap: SIZES.size_20,
     },
     beansContainerStyle: {
-        marginBottom: 85,
-        paddingHorizontal: 5
+        marginBottom: 100,
+        paddingHorizontal: SIZES.size_20,
+        gap: SIZES.size_20,
     },
     beanHeaderStyle: {
         color: COLORS.primaryWhiteHex,
         fontWeight: '500',
         fontSize: SIZES.size_20,
-        paddingHorizontal: SIZES.size_20,
-        marginTop: SIZES.size_10
+        paddingHorizontal: SIZES.size_24,
+        marginVertical: SIZES.size_10
     },
     noCoffee: {
         paddingVertical: 10,

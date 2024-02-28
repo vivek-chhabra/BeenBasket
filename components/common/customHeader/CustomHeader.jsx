@@ -10,17 +10,23 @@ export default function CustomHeader({
     iconLeft,
     iconRight,
     containerStyle,
-    style
+    style,
+    handleLeft,
+    handleRight,
+    isLeftIconDisabled
 }) {
     return (
         <View style={[styles.headerContainer, containerStyle]}>
             <GradientStyleContainer
                 contentContainer={
-                    <PrimaryButton
-                        containerStyle={[styles.containerStyle]}
-                        titleStyle={styles.iconStyle}
-                        iconUrl={iconLeft}
-                    />
+                    !isLeftIconDisabled && (
+                        <PrimaryButton
+                            containerStyle={[styles.containerStyle]}
+                            titleStyle={styles.iconStyle}
+                            iconUrl={iconLeft}
+                            handlePress={handleLeft && handleLeft}
+                        />
+                    )
                 }
                 containerStyle={{ padding: 0, borderRadius: SIZES.size_10 }}
             />
@@ -30,6 +36,7 @@ export default function CustomHeader({
                         containerStyle={[styles.containerStyle]}
                         titleStyle={[styles.iconStyle, style]}
                         iconUrl={iconRight}
+                        handlePress={handleRight && handleRight}
                     />
                 }
                 containerStyle={{ padding: 0, borderRadius: SIZES.size_10 }}

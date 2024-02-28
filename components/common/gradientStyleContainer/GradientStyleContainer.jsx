@@ -7,18 +7,21 @@ import { COLORS } from '../../../constants';
 
 export default function GradientStyleContainer({
     containerStyle,
-    contentContainer
+    contentContainer,
+    showBackground = true
 }) {
     return (
-        <View style={styles.container}>
-            <LinearGradient
-                colors={[COLORS.primaryGreyHex, COLORS.primaryBlackHex]}
-                style={[styles.container, containerStyle]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-            >
-                {contentContainer}
-            </LinearGradient>
-        </View>
+        <LinearGradient
+            colors={
+                showBackground
+                    ? [COLORS.primaryGreyHex, COLORS.primaryBlackHex]
+                    : ['transparent', 'transparent']
+            }
+            style={[styles.container, containerStyle]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+        >
+            {contentContainer}
+        </LinearGradient>
     );
 }

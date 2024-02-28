@@ -3,12 +3,11 @@ import { View, Text, Image } from 'react-native';
 import React, { useState } from 'react';
 
 import GradientStyleContainer from '../gradientStyleContainer/GradientStyleContainer';
+import { useAsyncStorage } from '../../../context/AsyncStorageContext';
 import PrimaryButton from '../primaryButton/PrimaryButton';
 import { COLORS, icons } from '../../../constants';
 import styles from './customCoffeeComponent.style';
 import Ripple from 'react-native-material-ripple';
-import { useAsyncStorage } from '../../../context/AsyncStorageContext';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function CustomCoffeeComponent({ containerStyle, data }) {
     const [isSuccess, setIsSuccess] = useState(false);
@@ -24,7 +23,13 @@ export default function CustomCoffeeComponent({ containerStyle, data }) {
         average_rating,
         prices,
         roasted,
-        id
+        id,
+        imagelink_portrait,
+        special_ingredients,
+        ratings_count,
+        type,
+        ingredients,
+        description
     } = data;
 
     const addToCart = async () => {

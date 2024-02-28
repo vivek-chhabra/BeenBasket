@@ -67,6 +67,7 @@ const TabNavigator = ({ navigation }) => {
                 name="Favorite"
                 component={FavoriteScreen}
                 options={{
+                    headerTitle: 'Favorites',
                     tabBarIcon: ({ color, focused, size }) =>
                         renderTabs('Favorite', focused, 'heart')
                 }}
@@ -75,6 +76,7 @@ const TabNavigator = ({ navigation }) => {
                 name="OrderHistory"
                 component={OrderHistoryScreen}
                 options={{
+                    headerTitle: 'Order History',
                     tabBarIcon: ({ color, focused, size }) =>
                         renderTabs('OrderHistory', focused, 'bell')
                 }}
