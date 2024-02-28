@@ -35,7 +35,7 @@ export default function PrimaryButton({
                 />
             ) : (
                 <Text style={[defaultTitleStyle, titleStyle, activeTitleStyle]}>
-                    title
+                    {title}
                 </Text>
             )}
         </Ripple>

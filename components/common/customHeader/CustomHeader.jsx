@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import React from 'react';
 
 import GradientStyleContainer from '../gradientStyleContainer/GradientStyleContainer';
@@ -13,7 +13,8 @@ export default function CustomHeader({
     style,
     handleLeft,
     handleRight,
-    isLeftIconDisabled
+    isLeftIconDisabled,
+    headerTitle = ''
 }) {
     return (
         <View style={[styles.headerContainer, containerStyle]}>
@@ -30,6 +31,9 @@ export default function CustomHeader({
                 }
                 containerStyle={{ padding: 0, borderRadius: SIZES.size_10 }}
             />
+            {headerTitle && (
+                <Text style={styles.headerTitle}>{headerTitle}</Text>
+            )}
             <GradientStyleContainer
                 contentContainer={
                     <PrimaryButton

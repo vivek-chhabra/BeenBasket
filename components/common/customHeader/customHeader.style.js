@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: SIZES.size_10
+    padding: SIZES.size_10
     },
     containerStyle: {
         width: SIZES.size_36,
@@ -19,6 +19,11 @@ const styles = StyleSheet.create({
     iconStyle: {
         width: '50%',
         height: '50%'
+    },
+    headerTitle: {
+        fontSize: SIZES.size_20,
+        fontWeight: '700',
+        color: COLORS.primaryWhiteHex
     }
 });
 
