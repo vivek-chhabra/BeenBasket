@@ -1,20 +1,37 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, useContext } from 'react';
-import { isPresentInArray } from '../utils/utils';
+import { filterData } from '../utils/utils';
 
 const AsyncStorageContext = createContext();
 
 const AsyncStorageContextProvider = ({ children }) => {
-    async function setData(key, data, onSuccess) {
+    async function setData(key, data, onSuccess, showAlert) {
         try {
             const prevData = (await getData(key)) || [];
-            const isInStorage = isPresentInArray(data, prevData);
+            const item = filterData('id', data.id, prevData);
 
-            if (isInStorage) return;
-            const dataToSet = JSON.stringify([data, ...prevData]);
+            const sizes = item[0]?.sizes;
+            const existingSizes = sizes ? [...sizes] : [];
+            if (
+                item.length &&
+                sizes?.some(size => size.size === data.sizes[0].size)
+            )
+                return showAlert();
+            else if (key === 'favorite' && item.length) {
+                let dataToSet = prevData.filter(ele => ele.id !== item[0].id);
+                dataToSet = JSON.stringify(dataToSet);
+                return await AsyncStorage.setItem(key, dataToSet);
+            }
+
+            const itemToSet =
+                key === 'favorite'
+                    ? data
+                    : { ...data, sizes: [...data.sizes, ...existingSizes] };
+
+            const dataToSet = JSON.stringify([itemToSet, ...prevData]);
             await AsyncStorage.setItem(key, dataToSet);
-            
-            onSuccess();
+
+            onSuccess && onSuccess();
         } catch (err) {
             console.log(err.message);
             alert(err.message);

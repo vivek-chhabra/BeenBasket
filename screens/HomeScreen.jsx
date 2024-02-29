@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import * as Burnt from 'burnt';
 import {
     StyleSheet,
     Text,
@@ -234,12 +235,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: SIZES.size_12,
         paddingHorizontal: SIZES.size_20,
-        gap: SIZES.size_20,
+        gap: SIZES.size_20
     },
     beansContainerStyle: {
         marginBottom: 100,
         paddingHorizontal: SIZES.size_20,
-        gap: SIZES.size_20,
+        gap: SIZES.size_20
     },
     beanHeaderStyle: {
         color: COLORS.primaryWhiteHex,

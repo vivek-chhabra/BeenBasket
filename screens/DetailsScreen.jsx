@@ -1,51 +1,51 @@
-import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
+import { Text, ScrollView, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
-import { COLORS, SIZES } from '../constants';
-import BGImageInfo from '../components/common/BGImageInfo/BGImageInfo';
-import { StatusBar } from 'expo-status-bar';
-import CustomSizePicker from '../components/common/customSizePicker/CustomSizePicker';
+
 import BottomCartPaymentSection from '../components/common/bottomCartPaymentSection/BottomCartPaymentSection';
+import CustomSizePicker from '../components/common/customSizePicker/CustomSizePicker';
+import BGImageInfo from '../components/common/BGImageInfo/BGImageInfo';
+import { useAsyncStorage } from '../context/AsyncStorageContext';
+import { COLORS, SIZES } from '../constants';
+import { addToCart } from '../utils/utils';
 
 export default function CoffeeBeanDetails({ route }) {
     const { data } = route.params;
 
-    const [activeSize, setActiveSize] = useState(data.prices[0].size);
-    const [activePrice, setActivePrice] = useState(data.prices[0].price);
+    const [activeSize, setActiveSize] = useState(data.prices[2]);
+
+    const { setData } = useAsyncStorage();
 
     const {
-        imagelink_portrait,
+        imagelink_square,
+        id,
         roasted,
         special_ingredient,
-        average_rating,
-        ratings_count,
         prices,
         type,
-        ingredients,
         name,
-        description
     } = data;
+
+    const addItemToCart = () => {
+        addToCart(
+            setData,
+            {
+                id,
+                name,
+                special_ingredient,
+                roasted,
+                imagelink_square,
+                sizes: [activeSize]
+            },
+            undefined,
+            `${type} with this size is already added in the cart`
+        );
+    };
 
     return (
         <>
             <ScrollView style={styles.container}>
-                <StatusBar
-                    translucent
-                    backgroundColor="#62424200"
-                    style="light"
-                />
                 <BGImageInfo
-                    data={{
-                        imagelink_portrait,
-                        roasted,
-                        special_ingredient,
-                        average_rating,
-                        ratings_count,
-                        prices,
-                        type,
-                        ingredients,
-                        name,
-                        description
-                    }}
+                    data={data}
                     isFavoriteStyle={false}
                 />
 
@@ -58,13 +58,12 @@ export default function CoffeeBeanDetails({ route }) {
                         paddingHorizontal: SIZES.size_15,
                         paddingBottom: 100
                     }}
-                    setActivePrice={setActivePrice}
                 />
             </ScrollView>
             <BottomCartPaymentSection
-                handlePress={() => console.log('first')}
+                handlePress={addItemToCart}
                 buttonTitle="Add to Cart"
-                price={activePrice}
+                price={activeSize.price}
                 priceTitle="Price"
             />
         </>

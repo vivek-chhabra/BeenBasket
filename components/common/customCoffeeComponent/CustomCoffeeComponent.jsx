@@ -8,6 +8,8 @@ import PrimaryButton from '../primaryButton/PrimaryButton';
 import { COLORS, icons } from '../../../constants';
 import styles from './customCoffeeComponent.style';
 import Ripple from 'react-native-material-ripple';
+import { addToCart } from '../../../utils/utils';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function CustomCoffeeComponent({ containerStyle, data }) {
     const [isSuccess, setIsSuccess] = useState(false);
@@ -31,26 +33,6 @@ export default function CustomCoffeeComponent({ containerStyle, data }) {
         ingredients,
         description
     } = data;
-
-    const addToCart = async () => {
-        await setData(
-            'cart',
-            {
-                id,
-                name,
-                special_ingredient,
-                roasted,
-                imagelink_square,
-                sizes: [{ ...prices[2], quantity: 1 }]
-            },
-            () => {
-                setIsSuccess(true);
-                setTimeout(() => {
-                    setIsSuccess(false);
-                }, 1280);
-            }
-        );
-    };
 
     const handlePress = () => {
         navigation.navigate('coffeeBeanDetails', { data });
@@ -107,7 +89,26 @@ export default function CustomCoffeeComponent({ containerStyle, data }) {
                                     ? styles.successIconStyle
                                     : styles.iconStyle
                             }
-                            handlePress={addToCart}
+                            handlePress={() =>
+                                addToCart(
+                                    setData,
+                                    {
+                                        id,
+                                        name,
+                                        special_ingredient,
+                                        roasted,
+                                        imagelink_square,
+                                        sizes: [{ ...prices[2], quantity: 1 }]
+                                    },
+                                    () => {
+                                        setIsSuccess(true);
+                                        setTimeout(() => {
+                                            setIsSuccess(false);
+                                        }, 1280);
+                                    },
+                                    'Item Already in the Cart'
+                                )
+                            }
                         />
                     </View>
                 </>

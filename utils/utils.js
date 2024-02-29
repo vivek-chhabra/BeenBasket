@@ -1,3 +1,5 @@
+import * as Burnt from 'burnt';
+
 export const filterData = (key, value, data) => {
     return data.filter(item =>
         item[key].toLowerCase().includes(value.toLowerCase())
@@ -22,3 +24,19 @@ export function truncateTextWithWords(string, end) {
 
     return wordsArr.slice(0, end).join(' ') + truncate;
 }
+
+export const addToCart = async (setData, dataToSet, onSuccess, alertMsg) => {
+    await setData(
+        'cart',
+        dataToSet,
+        onSuccess,
+        () => {
+            Burnt.toast({
+                title: alertMsg,
+                preset: 'done',
+                message: 'See your downloads.',
+                from: 'top',
+            });
+        }
+    );
+};

@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { Text, View } from 'react-native';
 import React from 'react';
 
@@ -14,8 +15,11 @@ export default function CustomHeader({
     handleLeft,
     handleRight,
     isLeftIconDisabled,
-    headerTitle = ''
+    headerTitle = '',
+    enableGoBackBtn = true
 }) {
+    const navigation = useNavigation();
+
     return (
         <View style={[styles.headerContainer, containerStyle]}>
             <GradientStyleContainer
@@ -25,7 +29,11 @@ export default function CustomHeader({
                             containerStyle={[styles.containerStyle]}
                             titleStyle={styles.iconStyle}
                             iconUrl={iconLeft}
-                            handlePress={handleLeft && handleLeft}
+                            handlePress={
+                                enableGoBackBtn
+                                    ? () => navigation.goBack()
+                                    : handleLeft && handleLeft
+                            }
                         />
                     )
                 }

@@ -1,11 +1,19 @@
 import { View, Text, Image, ScrollView, Pressable } from 'react-native';
 import React, { useState } from 'react';
+
 import CustomHeader from '../customHeader/CustomHeader';
 import { COLORS, SIZES, icons } from '../../../constants';
 import styles from './BGImageInfo.style';
 import GradientStyleContainer from '../gradientStyleContainer/GradientStyleContainer';
 import { BlurView } from 'expo-blur';
-import { truncateText } from '../../../utils/utils';
+import {
+    filterData,
+    isPresentInArray,
+    truncateText
+} from '../../../utils/utils';
+import { useAsyncStorage } from '../../../context/AsyncStorageContext';
+import { useFocusEffect } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function BGImageInfo({
     data,
@@ -14,6 +22,9 @@ export default function BGImageInfo({
     isFavoriteStyle = false
 }) {
     const [toggleDescription, setToggleDescription] = useState(true);
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    const { setData, getData } = useAsyncStorage();
 
     const {
         imagelink_portrait,
@@ -21,13 +32,28 @@ export default function BGImageInfo({
         special_ingredient,
         average_rating,
         ratings_count,
-        prices,
         type,
         ingredients,
         name,
-        description
+        description,
     } = data;
     const isCoffee = type === 'Coffee';
+
+    const checkFav = async () => {
+        const favList = await getData('favorite');
+        setIsFavorite(isPresentInArray(data, favList));
+    };
+
+    const addToFavorite = async () => {
+        await setData('favorite', data);
+        checkFav();
+    };
+
+    useFocusEffect(
+        React.useCallback(() => {
+            checkFav();
+        }, [])
+    );
 
     return (
         <ScrollView
@@ -43,11 +69,13 @@ export default function BGImageInfo({
                 <CustomHeader
                     iconLeft={icons.arrowLeft}
                     iconRight={icons.heart}
+                    style={isFavorite && { tintColor: COLORS.primaryRedHex }}
                     containerStyle={[
                         styles.headerContainer,
                         { paddingHorizontal: SIZES.size_18 }
                     ]}
                     isLeftIconDisabled={isLeftIconDisabled}
+                    handleRight={addToFavorite}
                 />
                 <BlurView
                     style={styles.imgBottomContent(isFavoriteStyle)}

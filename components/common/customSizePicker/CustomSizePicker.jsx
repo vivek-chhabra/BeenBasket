@@ -11,7 +11,6 @@ export default function CustomSizePicker({
     style,
     activeSize,
     setActiveSize,
-    setActivePrice
 }) {
     return (
         <View style={[styles.container, containerStyle]}>
@@ -19,15 +18,14 @@ export default function CustomSizePicker({
                 <PrimaryButton
                     key={`${size.size} - ${idx}`}
                     containerStyle={[
-                        styles.sizeStyle(activeSize === size.size),
+                        styles.sizeStyle(activeSize.size === size.size),
                         style
                     ]}
                     title={size.size}
                     handlePress={() => {
-                        setActiveSize(size.size);
-                        setActivePrice(size.price);
+                        setActiveSize(size);
                     }}
-                    titleStyle={styles.textStyle(activeSize === size.size)}
+                    titleStyle={styles.textStyle(activeSize.size === size.size)}
                 />
             ))}
         </View>
