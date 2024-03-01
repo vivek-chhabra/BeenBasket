@@ -7,8 +7,9 @@ import OrderHistoryScreen from '../screens/OrderHistoryScreen';
 import FavoriteScreen from '../screens/FavoriteScreen';
 import HomeScreen from '../screens/HomeScreen';
 import CartScreen from '../screens/CartScreen';
-import { COLORS, icons } from '../constants';
+import { COLORS, SIZES, icons, images } from '../constants';
 import { BlurView } from 'expo-blur';
+import CustomHeader from '../components/common/customHeader/CustomHeader';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -30,14 +31,37 @@ const TabNavigator = ({ navigation }) => {
     return (
         <BottomTab.Navigator
             screenOptions={{
-                headerShown: false,
+                header: ({ navigation, route }) => (
+                    <CustomHeader
+                        iconLeft={icons.menu}
+                        iconRight={images.profile}
+                        containerStyle={{
+                            paddingHorizontal: SIZES.size_20,
+                            paddingVertical: SIZES.size_15,
+                            borderWidth: 0,
+                            backgroundColor: COLORS.primaryBlackHex
+                        }}
+                        headerTitle={
+                            route.params.screenName === 'Home'
+                                ? ''
+                                : route.params.screenName
+                        }
+                        style={{
+                            tintColor: null,
+                            width: '100%',
+                            height: '100%',
+                            borderRadius: SIZES.size_10
+                        }}
+                        enableGoBackBtn={false}
+                    />
+                ),
                 tabBarHideOnKeyboard: true,
                 tabBarStyle: styles.tabBarStyle,
                 tabBarLabelStyle: { display: 'none' },
                 tabBarBackground: () => (
                     <BlurView
                         intensity={30}
-                        tint='dark'
+                        tint="dark"
                         style={{
                             ...StyleSheet.absoluteFillObject,
                             overflow: 'hidden',
@@ -54,6 +78,7 @@ const TabNavigator = ({ navigation }) => {
                     tabBarIcon: ({ color, focused, size }) =>
                         renderTabs('Home', focused, 'home')
                 }}
+                initialParams={{ screenName: 'Home' }}
             />
             <BottomTab.Screen
                 name="Cart"
@@ -62,6 +87,7 @@ const TabNavigator = ({ navigation }) => {
                     tabBarIcon: ({ color, focused, size }) =>
                         renderTabs('Cart', focused, 'cart')
                 }}
+                initialParams={{ screenName: 'Cart' }}
             />
             <BottomTab.Screen
                 name="Favorite"
@@ -71,6 +97,7 @@ const TabNavigator = ({ navigation }) => {
                     tabBarIcon: ({ color, focused, size }) =>
                         renderTabs('Favorite', focused, 'heart')
                 }}
+                initialParams={{ screenName: 'Favorite' }}
             />
             <BottomTab.Screen
                 name="OrderHistory"
@@ -80,6 +107,7 @@ const TabNavigator = ({ navigation }) => {
                     tabBarIcon: ({ color, focused, size }) =>
                         renderTabs('OrderHistory', focused, 'bell')
                 }}
+                initialParams={{ screenName: 'Order History' }}
             />
         </BottomTab.Navigator>
     );
@@ -91,7 +119,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.primaryBlackRGBA,
         position: 'absolute',
         borderTopWidth: 0,
-        elevation: 0,
+        elevation: 0
     },
     blurViewStyle: {
         position: 'absolute',

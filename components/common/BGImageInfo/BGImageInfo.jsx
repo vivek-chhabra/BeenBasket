@@ -1,30 +1,31 @@
 import { View, Text, Image, ScrollView, Pressable } from 'react-native';
 import React, { useState } from 'react';
 
-import CustomHeader from '../customHeader/CustomHeader';
-import { COLORS, SIZES, icons } from '../../../constants';
-import styles from './BGImageInfo.style';
 import GradientStyleContainer from '../gradientStyleContainer/GradientStyleContainer';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useAsyncStorage } from '../../../context/AsyncStorageContext';
+import { COLORS, SIZES, icons } from '../../../constants';
+import CustomHeader from '../customHeader/CustomHeader';
+import styles from './BGImageInfo.style';
 import { BlurView } from 'expo-blur';
 import {
     filterData,
     isPresentInArray,
     truncateText
 } from '../../../utils/utils';
-import { useAsyncStorage } from '../../../context/AsyncStorageContext';
-import { useFocusEffect } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function BGImageInfo({
     data,
     isLeftIconDisabled = false,
     containerStyle,
-    isFavoriteStyle = false
+    isFavoriteStyle = false,
+    doNavigate = false
 }) {
     const [toggleDescription, setToggleDescription] = useState(true);
     const [isFavorite, setIsFavorite] = useState(false);
 
     const { setData, getData } = useAsyncStorage();
+    const navigation = useNavigation();
 
     const {
         imagelink_portrait,
@@ -35,7 +36,7 @@ export default function BGImageInfo({
         type,
         ingredients,
         name,
-        description,
+        description
     } = data;
     const isCoffee = type === 'Coffee';
 
@@ -49,6 +50,10 @@ export default function BGImageInfo({
         checkFav();
     };
 
+    const handleNavigate = () => {
+        navigation.navigate('coffeeBeanDetails', { data });
+    };
+
     useFocusEffect(
         React.useCallback(() => {
             checkFav();
@@ -60,11 +65,18 @@ export default function BGImageInfo({
             style={[styles.container, containerStyle]}
             showsVerticalScrollIndicator={false}
         >
-            <View style={styles.BGImageContainer(isFavoriteStyle)}>
+            <Pressable
+                style={styles.BGImageContainer(isFavoriteStyle)}
+                onPress={doNavigate && handleNavigate}
+            >
                 <Image
                     source={imagelink_portrait}
                     resizeMode="cover"
-                    style={styles.BGImage}
+                    resizeMethod="center"
+                    style={[
+                        styles.BGImage,
+                        isFavoriteStyle && { aspectRatio: 20 / 30 }
+                    ]}
                 />
                 <CustomHeader
                     iconLeft={icons.arrowLeft}
@@ -170,7 +182,7 @@ export default function BGImageInfo({
                         />
                     </View>
                 </BlurView>
-            </View>
+            </Pressable>
             <GradientStyleContainer
                 showBackground={isFavoriteStyle}
                 contentContainer={
@@ -179,7 +191,11 @@ export default function BGImageInfo({
                         <Text style={styles.descriptionText(toggleDescription)}>
                             <Text>
                                 {toggleDescription
-                                    ? truncateText(description, 280, false)
+                                    ? truncateText(
+                                          description,
+                                          isFavoriteStyle ? 250 : 280,
+                                          false
+                                      )
                                     : description}{' '}
                             </Text>
                             <Text

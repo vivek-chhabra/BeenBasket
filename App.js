@@ -15,57 +15,29 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
     return (
-        <>
-            <SafeAreaView
-                style={{ flex: 1, backgroundColor: COLORS.primaryBlackHex }}
-            >
-                <StatusBar
-                    style="light"
-                    backgroundColor={COLORS.primaryBlackHex}
-                />
-                <AsyncStorageContext>
-                    <NavigationContainer>
-                        <Stack.Navigator>
-                            <Stack.Screen
-                                name="Tabs"
-                                component={TabNavigator}
-                                options={{
-                                    header: () => (
-                                        <CustomHeader
-                                            iconLeft={icons.menu}
-                                            iconRight={images.profile}
-                                            containerStyle={{
-                                                paddingHorizontal:
-                                                    SIZES.size_20,
-                                                paddingVertical: SIZES.size_15,
-                                                borderWidth: 0,
-                                                right: 5,
-                                                backgroundColor:
-                                                    COLORS.primaryBlackHex
-                                            }}
-                                            style={{
-                                                tintColor: null,
-                                                width: '100%',
-                                                height: '100%',
-                                                borderRadius: SIZES.size_10
-                                            }}
-                                            enableGoBackBtn={false}
-                                        />
-                                    )
-                                }}
-                            />
-                            <Stack.Screen
-                                name="coffeeBeanDetails"
-                                component={DetailsScreen}
-                                options={{
-                                    headerShown: false,
-                                    animation: 'slide_from_right'
-                                }}
-                            />
-                        </Stack.Navigator>
-                    </NavigationContainer>
-                </AsyncStorageContext>
-            </SafeAreaView>
-        </>
+        <SafeAreaView
+            style={{ flex: 1, backgroundColor: COLORS.primaryBlackHex }}
+        >
+            <StatusBar style="light" backgroundColor={COLORS.primaryBlackHex} />
+            <AsyncStorageContext>
+                <NavigationContainer>
+                    <Stack.Navigator>
+                        <Stack.Screen
+                            name="Tabs"
+                            component={TabNavigator}
+                            options={{headerShown: false}}
+                        />
+                        <Stack.Screen
+                            name="coffeeBeanDetails"
+                            component={DetailsScreen}
+                            options={{
+                                headerShown: false,
+                                animation: 'slide_from_right'
+                            }}
+                        />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </AsyncStorageContext>
+        </SafeAreaView>
     );
 }

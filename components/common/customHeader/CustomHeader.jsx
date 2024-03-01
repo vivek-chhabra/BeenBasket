@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Text, View } from 'react-native';
 import React from 'react';
 
@@ -19,6 +19,7 @@ export default function CustomHeader({
     enableGoBackBtn = true
 }) {
     const navigation = useNavigation();
+    const route = useRoute();
 
     return (
         <View style={[styles.headerContainer, containerStyle]}>
