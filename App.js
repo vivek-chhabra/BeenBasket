@@ -10,6 +10,7 @@ import { COLORS, SIZES, icons, images } from './constants';
 import TabNavigator from './navigators/TabNavigator';
 import DetailsScreen from './screens/DetailsScreen';
 import { StatusBar } from 'expo-status-bar';
+import PaymentsScreen from './screens/PaymentsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,7 +26,7 @@ export default function App() {
                         <Stack.Screen
                             name="Tabs"
                             component={TabNavigator}
-                            options={{headerShown: false}}
+                            options={{ headerShown: false }}
                         />
                         <Stack.Screen
                             name="coffeeBeanDetails"
@@ -33,6 +34,34 @@ export default function App() {
                             options={{
                                 headerShown: false,
                                 animation: 'slide_from_right'
+                            }}
+                        />
+                        <Stack.Screen
+                            name="paymentScreen"
+                            component={PaymentsScreen}
+                            options={{
+                                header: ({ navigation, route }) => (
+                                    <CustomHeader
+                                        iconLeft={icons.arrowLeft}
+                                        containerStyle={{
+                                            paddingHorizontal: SIZES.size_20,
+                                            paddingVertical: SIZES.size_15,
+                                            borderWidth: 0,
+                                            backgroundColor:
+                                                COLORS.primaryBlackHex
+                                        }}
+                                        isRightIconDisabled={true}
+                                        headerTitle={'Payment'}
+                                        style={{
+                                            tintColor: null,
+                                            width: '100%',
+                                            height: '100%',
+                                            borderRadius: SIZES.size_10
+                                        }}
+                                        enableGoBackBtn={true}
+                                    />
+                                ),
+                                animation: 'slide_from_bottom'
                             }}
                         />
                     </Stack.Navigator>

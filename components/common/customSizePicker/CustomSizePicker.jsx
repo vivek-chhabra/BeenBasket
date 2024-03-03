@@ -1,16 +1,15 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 
-import styles from './customSizePicker.style';
-import { SIZES } from '../../../constants';
 import PrimaryButton from '../primaryButton/PrimaryButton';
+import styles from './customSizePicker.style';
 
 export default function CustomSizePicker({
     sizes,
     containerStyle,
     style,
     activeSize,
-    setActiveSize,
+    setActiveSize
 }) {
     return (
         <View style={[styles.container, containerStyle]}>

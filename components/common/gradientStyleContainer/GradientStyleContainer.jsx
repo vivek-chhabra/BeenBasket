@@ -1,5 +1,4 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { View } from 'react-native';
 import React from 'react';
 
 import styles from './gradientStyleContainer.style';
@@ -14,7 +13,7 @@ export default function GradientStyleContainer({
         <LinearGradient
             colors={
                 showBackground
-                    ? [COLORS.primaryGreyHex, COLORS.primaryBlackHex]
+                    ? [COLORS.secondaryDarkGreyHex, COLORS.primaryBlackHex]
                     : ['transparent', 'transparent']
             }
             style={[styles.container, containerStyle]}

@@ -28,6 +28,7 @@ const COLORS = {
     primaryWhiteHex: '#FFFFFF',
     primaryBlackRGBA: 'rgba(12, 15, 20, 0.574)',
     secondaryBlackRGBA: 'rgba(0,0,0,0.7)',
+    secondaryBlackRGBA2: 'rgba(0, 0, 0, 0.729)',
     primarySuccessGreenHex: '#0fc271'
 };
 

@@ -1,17 +1,15 @@
-import { Text, Image } from 'react-native';
 import Ripple from 'react-native-material-ripple';
+import { Text, Image } from 'react-native';
 import React from 'react';
 
-import styles from './primaryButton.style';
 import { COLORS } from '../../../constants';
+import styles from './primaryButton.style';
 
 export default function PrimaryButton({
+    activeTitleStyle = {},
     iconUrl,
     handlePress,
     title,
-    activeContainerStyle,
-    activeTitleStyle = {},
-    color,
     titleStyle,
     containerStyle
 }) {

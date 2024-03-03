@@ -11,24 +11,51 @@ const AsyncStorageContextProvider = ({ children }) => {
             const item = filterData('id', data.id, prevData);
 
             const sizes = item[0]?.sizes;
-            const existingSizes = sizes ? [...sizes] : [];
+            const existingSizes =
+                sizes &&
+                data.sizes.length === 1 &&
+                sizes[0].quantity === data.sizes[0].quantity
+                    ? [...sizes]
+                    : [];
+
             if (
-                item.length &&
-                sizes?.some(size => size.size === data.sizes[0].size)
+                item?.length &&
+                data.sizes?.length === 1 &&
+                sizes?.some(
+                    size =>
+                        size.size === data.sizes[0].size &&
+                        size.quantity === data.sizes[0].quantity
+                )
             )
                 return showAlert();
-            else if (key === 'favorite' && item.length) {
+            else if (key === 'favorite' && item?.length) {
                 let dataToSet = prevData.filter(ele => ele.id !== item[0].id);
                 dataToSet = JSON.stringify(dataToSet);
                 return await AsyncStorage.setItem(key, dataToSet);
             }
 
-            const itemToSet =
-                key === 'favorite'
-                    ? data
-                    : { ...data, sizes: [...data.sizes, ...existingSizes] };
+            const nonZeroSizes =
+            data.sizes && data.sizes.filter(size => size.quantity > 0);
 
-            const dataToSet = JSON.stringify([itemToSet, ...prevData]);
+            const prevDataTwo =
+                key === 'cart' && item?.length
+                    ? prevData.filter(ele => ele.id !== data.id)
+                    : prevData;
+
+            const dataToBeSet =
+                key === 'favorite'
+                    ? [data, ...prevDataTwo]
+                    : nonZeroSizes.length === 0
+                    ? prevDataTwo.filter(item => item?.sizes?.length > 0)
+                    : [
+                          {
+                              ...data,
+                              sizes: [...nonZeroSizes, ...existingSizes]
+                          },
+                          ...prevDataTwo
+                      ];
+
+            const dataToSet = JSON.stringify(dataToBeSet);
             await AsyncStorage.setItem(key, dataToSet);
 
             onSuccess && onSuccess();
@@ -49,8 +76,6 @@ const AsyncStorageContextProvider = ({ children }) => {
         }
     }
 
-    async function updateData() {}
-
     async function deleteData(key, id) {
         try {
             const prevData = await getData(key);
@@ -64,11 +89,18 @@ const AsyncStorageContextProvider = ({ children }) => {
         }
     }
 
-    async function getDataById(key, data, id) {}
+    async function removeKeyData(key) {
+        try {
+            await AsyncStorage.removeItem(key);
+        } catch (err) {
+            console.log(err.message);
+            alert(err.message);
+        }
+    }
 
     return (
         <AsyncStorageContext.Provider
-            value={{ setData, getData, updateData, deleteData }}
+            value={{ setData, getData, deleteData, removeKeyData }}
         >
             {children}
         </AsyncStorageContext.Provider>

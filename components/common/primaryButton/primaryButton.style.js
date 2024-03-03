@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
 import { COLORS, SIZES } from '../../../constants';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     titleContainer: {
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     iconStyle: {
         width: SIZES.size_24,
         height: SIZES.size_24,
-        tintColor: COLORS.primaryLightGreyHex
+        tintColor: COLORS.primaryLightGreyHex,
     }
 });
 

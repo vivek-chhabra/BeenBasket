@@ -68,8 +68,14 @@ const latteSquare1 = require(`${baseCoffee}/latte/square/latte_pic_1_square.png`
 const latteSquare2 = require(`${baseCoffee}/latte/square/latte_pic_2_square.png`);
 const latteSquare3 = require(`${baseCoffee}/latte/square/latte_pic_3_square.png`);
 
+const card = require('../assets/card.png');
+
 // profile
 const profile = require(`../assets/profile.jpg`);
+
+// empty list
+const emptyList = require(`../assets/empty-box.png`);
+const emptySearch = require(`../assets/emptySearch.png`);
 
 export default {
     amazon,
@@ -120,5 +126,8 @@ export default {
     macchiatoSquare3,
     robustaBeanPort,
     robustaBeanSquare,
-    profile
+    profile,
+    emptyList,
+    emptySearch,
+    card
 };

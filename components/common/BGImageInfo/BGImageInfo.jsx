@@ -1,5 +1,5 @@
 import { View, Text, Image, ScrollView, Pressable } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 
 import GradientStyleContainer from '../gradientStyleContainer/GradientStyleContainer';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
@@ -41,7 +41,7 @@ export default function BGImageInfo({
     const isCoffee = type === 'Coffee';
 
     const checkFav = async () => {
-        const favList = await getData('favorite');
+        const favList = (await getData('favorite')) || [];
         setIsFavorite(isPresentInArray(data, favList));
     };
 
@@ -54,7 +54,7 @@ export default function BGImageInfo({
         navigation.navigate('coffeeBeanDetails', { data });
     };
 
-    useFocusEffect(
+    useLayoutEffect(
         React.useCallback(() => {
             checkFav();
         }, [])
@@ -67,7 +67,7 @@ export default function BGImageInfo({
         >
             <Pressable
                 style={styles.BGImageContainer(isFavoriteStyle)}
-                onPress={doNavigate && handleNavigate}
+                onPress={doNavigate ? handleNavigate : null}
             >
                 <Image
                     source={imagelink_portrait}

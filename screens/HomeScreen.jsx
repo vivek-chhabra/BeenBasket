@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
-import * as Burnt from 'burnt';
+import React, { useEffect, useState } from 'react';
 import {
     StyleSheet,
     Text,
@@ -7,16 +6,16 @@ import {
     TextInput,
     ScrollView,
     Pressable,
-    FlatList
+    FlatList,
+    Image
 } from 'react-native';
 
 import CustomCoffeeComponent from '../components/common/customCoffeeComponent/CustomCoffeeComponent';
 import PrimaryButton from '../components/common/primaryButton/PrimaryButton';
-import { COLORS, SIZES, icons } from '../constants';
+import { COLORS, SIZES, icons, images } from '../constants';
 import { filterData } from '../utils/utils';
 import CoffeeData from '../data/coffeeData';
 import BeansData from '../data/beansData';
-import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 
 const HomeScreen = () => {
     const [query, setQuery] = useState('');
@@ -47,23 +46,9 @@ const HomeScreen = () => {
         setCoffeeList(filteredCoffeeList);
     };
 
-    const isFocused = useIsFocused();
-
-    useEffect(() => {
-        if (isFocused) {
-            const categoriesSet = new Set();
-            CoffeeData.forEach(category => {
-                if (categoriesSet.has(category.name)) {
-                    return false;
-                } else categoriesSet.add(category.name);
-            });
-            setCategories(['All', ...categoriesSet]);
-        }
-    }, []);
-
     useEffect(() => {
         const categoriesSet = new Set();
-        const cate = CoffeeData.filter(cate => {
+        CoffeeData.filter(cate => {
             if (categoriesSet.has(cate.name)) {
                 return false;
             } else categoriesSet.add(cate.name);
@@ -158,7 +143,12 @@ const HomeScreen = () => {
                     contentContainerStyle={styles.coffeeContainerStyle}
                 />
             ) : (
-                <Text style={styles.noCoffee}>No Coffee Found...</Text>
+                <View style={styles.noItem}>
+                    <Image
+                        source={images.emptySearch}
+                        style={styles.noItemImg}
+                    />
+                </View>
             )}
 
             <Text style={styles.beanHeaderStyle}>Coffee Beans</Text>
@@ -249,14 +239,15 @@ const styles = StyleSheet.create({
         paddingHorizontal: SIZES.size_24,
         marginVertical: SIZES.size_10
     },
-    noCoffee: {
-        paddingVertical: 10,
-        textAlign: 'center',
-        color: COLORS.secondaryLightGreyHex + '80',
-        fontWeight: '600',
-        borderRadius: SIZES.size_15,
-        fontSize: SIZES.size_16,
-        marginHorizontal: 20,
-        marginVertical: SIZES.size_36 + 40
+    noItem: {
+        width: '100%',
+        marginVertical: SIZES.size_36 + 40,
+        paddingHorizontal: SIZES.size_20,
+        backgroundColor: COLORS.primaryBlackHex
+    },
+    noItemImg: {
+        width: 70,
+        height: 70,
+        alignSelf: 'center'
     }
 });

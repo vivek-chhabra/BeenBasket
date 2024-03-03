@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
+import Ripple from 'react-native-material-ripple';
 import { View, Text, Image } from 'react-native';
 import React, { useState } from 'react';
 
@@ -7,16 +8,13 @@ import { useAsyncStorage } from '../../../context/AsyncStorageContext';
 import PrimaryButton from '../primaryButton/PrimaryButton';
 import { COLORS, icons } from '../../../constants';
 import styles from './customCoffeeComponent.style';
-import Ripple from 'react-native-material-ripple';
 import { addToCart } from '../../../utils/utils';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function CustomCoffeeComponent({ containerStyle, data }) {
     const [isSuccess, setIsSuccess] = useState(false);
 
     const navigation = useNavigation();
-
-    const { setData, getData } = useAsyncStorage();
+    const { setData } = useAsyncStorage();
 
     const {
         imagelink_square,
@@ -26,12 +24,6 @@ export default function CustomCoffeeComponent({ containerStyle, data }) {
         prices,
         roasted,
         id,
-        imagelink_portrait,
-        special_ingredients,
-        ratings_count,
-        type,
-        ingredients,
-        description
     } = data;
 
     const handlePress = () => {
@@ -89,7 +81,7 @@ export default function CustomCoffeeComponent({ containerStyle, data }) {
                                     ? styles.successIconStyle
                                     : styles.iconStyle
                             }
-                            handlePress={() =>
+                            handlePress={() => {
                                 addToCart(
                                     setData,
                                     {
@@ -107,8 +99,8 @@ export default function CustomCoffeeComponent({ containerStyle, data }) {
                                         }, 1280);
                                     },
                                     'Item Already in the Cart'
-                                )
-                            }
+                                );
+                            }}
                         />
                     </View>
                 </>

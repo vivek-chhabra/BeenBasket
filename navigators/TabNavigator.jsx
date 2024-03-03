@@ -1,15 +1,14 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet } from 'react-native';
+import { BlurView } from 'expo-blur';
 import React from 'react';
 
 import PrimaryButton from '../components/common/primaryButton/PrimaryButton';
-import OrderHistoryScreen from '../screens/OrderHistoryScreen';
+import CustomHeader from '../components/common/customHeader/CustomHeader';
+import { COLORS, SIZES, icons, images } from '../constants';
 import FavoriteScreen from '../screens/FavoriteScreen';
 import HomeScreen from '../screens/HomeScreen';
 import CartScreen from '../screens/CartScreen';
-import { COLORS, SIZES, icons, images } from '../constants';
-import { BlurView } from 'expo-blur';
-import CustomHeader from '../components/common/customHeader/CustomHeader';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -31,7 +30,7 @@ const TabNavigator = ({ navigation }) => {
     return (
         <BottomTab.Navigator
             screenOptions={{
-                header: ({ navigation, route }) => (
+                header: ({ route }) => (
                     <CustomHeader
                         iconLeft={icons.menu}
                         iconRight={images.profile}
@@ -75,7 +74,7 @@ const TabNavigator = ({ navigation }) => {
                 name="Home"
                 component={HomeScreen}
                 options={{
-                    tabBarIcon: ({ color, focused, size }) =>
+                    tabBarIcon: ({ focused }) =>
                         renderTabs('Home', focused, 'home')
                 }}
                 initialParams={{ screenName: 'Home' }}
@@ -84,7 +83,7 @@ const TabNavigator = ({ navigation }) => {
                 name="Cart"
                 component={CartScreen}
                 options={{
-                    tabBarIcon: ({ color, focused, size }) =>
+                    tabBarIcon: ({ focused }) =>
                         renderTabs('Cart', focused, 'cart')
                 }}
                 initialParams={{ screenName: 'Cart' }}
@@ -94,20 +93,10 @@ const TabNavigator = ({ navigation }) => {
                 component={FavoriteScreen}
                 options={{
                     headerTitle: 'Favorites',
-                    tabBarIcon: ({ color, focused, size }) =>
+                    tabBarIcon: ({ focused }) =>
                         renderTabs('Favorite', focused, 'heart')
                 }}
                 initialParams={{ screenName: 'Favorite' }}
-            />
-            <BottomTab.Screen
-                name="OrderHistory"
-                component={OrderHistoryScreen}
-                options={{
-                    headerTitle: 'Order History',
-                    tabBarIcon: ({ color, focused, size }) =>
-                        renderTabs('OrderHistory', focused, 'bell')
-                }}
-                initialParams={{ screenName: 'Order History' }}
             />
         </BottomTab.Navigator>
     );

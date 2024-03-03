@@ -9,21 +9,13 @@ import { COLORS, SIZES } from '../constants';
 import { addToCart } from '../utils/utils';
 
 export default function CoffeeBeanDetails({ route }) {
+    const { setData } = useAsyncStorage();
     const { data } = route.params;
 
     const [activeSize, setActiveSize] = useState(data.prices[2]);
 
-    const { setData } = useAsyncStorage();
-
-    const {
-        imagelink_square,
-        id,
-        roasted,
-        special_ingredient,
-        prices,
-        type,
-        name,
-    } = data;
+    const { imagelink_square, id, roasted, special_ingredient, prices, name } =
+        data;
 
     const addItemToCart = () => {
         addToCart(
@@ -34,20 +26,17 @@ export default function CoffeeBeanDetails({ route }) {
                 special_ingredient,
                 roasted,
                 imagelink_square,
-                sizes: [activeSize]
+                sizes: [{ ...activeSize, quantity: 1 }]
             },
             undefined,
-            `${type} with this size is already added in the cart`
+            `Already Added in the cart`
         );
     };
 
     return (
         <>
             <ScrollView style={styles.container}>
-                <BGImageInfo
-                    data={data}
-                    isFavoriteStyle={false}
-                />
+                <BGImageInfo data={data} isFavoriteStyle={false} />
 
                 <Text style={styles.sizeText}>Sizes</Text>
                 <CustomSizePicker
