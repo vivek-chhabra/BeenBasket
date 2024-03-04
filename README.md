@@ -1,4 +1,4 @@
-## 📱 BeenBasket
+## ☕ BeenBasket
 **BeenBasket is a mobile application for coffee and coffee bean enthusiasts. Users can search for different types of coffees, explore categories of coffee beans, and view detailed information about each product. The app allows users to customize their coffee orders by selecting from different sizes and types of beans. Additionally, users can also add products to the favorite list and to their cart, like or dislike items, and proceed to the checkout for payment.**
 
 <br>
